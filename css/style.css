@@ -1,0 +1,22 @@
+body{
+	padding-top: 0px;
+}
+
+.text-center{
+	text-align: center;
+}
+
+.wrap{
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+.wrap-login{
+	padding-top: 50px;
+	padding-bottom: 160px;
+}
+
+.wrap-footer{
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
