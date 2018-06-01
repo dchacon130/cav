@@ -19,7 +19,7 @@
 </head>
 <body class="bg-light">
 	<section class="container-fluid">
-		<?php require 'html/navbar.php'; ?>
+		<?php $alias="home"; require 'html/navbar.php';?>
 	</section>
 	<!-- section llamadas -->
 	<section class="container">

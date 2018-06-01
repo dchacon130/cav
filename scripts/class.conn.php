@@ -2,42 +2,34 @@
 class conn
 {
   var $conexion;
-  function conn()
+  function __construct()
   {
-  	if(!isset($this->conexion)){
-  		$this->conexion = (mysql_connect('localhost', 'root', '')) or die(mysql_error());
-  		mysql_select_db('cavdb',$this->conexion) or die(mysql_error());
-  	}
+    try{
+      $this->conexion = new PDO("mysql:host=localhost;dbname=cavdb","usucav","F34relfo");
+      $this->conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $this->conexion->exec("SET NAMES 'utf8'");
+    }catch(Exception $e){
+      echo "Conexión no disponible";
+      exit;
+    }
+
   }
 
   function consulta($consulta)
   {
-    $resultado = mysql_query($consulta,$this->conexion);
+    $resultado = $this->conexion->query($consulta);
   	if(!$resultado){
   		echo 'MySQL Error: ' . mysql_error();
 	    exit;
 	   }
   	 return $resultado; 
   }
-  
-  function fetch_array($consulta)
-  { 
-    return mysql_fetch_array($consulta);
-  }
- 
-  function num_rows($consulta)
-  { 
- 	  return mysql_num_rows($consulta);
-  }
- 
-  function fetch_row($consulta)
-  { 
- 	  return mysql_fetch_row($consulta);
-  }
-  function fetch_assoc($consulta)
-  { 
- 	  return mysql_fetch_assoc($consulta);
-  }  
 }
 
+/*Verificar conexión
+$conexion = new conn();
+$consulta = $conexion->consulta("SELECT * FROM user");
+echo "<pre>";
+var_dump($consulta->fetch(PDO::FETCH_ASSOC));
+*/
 ?>
